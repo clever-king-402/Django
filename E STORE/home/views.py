@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib import messages
 # Create your views here.
 
 class Base(View):
@@ -63,3 +65,36 @@ class DetailView(Base):
 def wishlist(request):
     return render(request,"wishlist.html")
 
+
+class RegisterView(Base):
+    def get(self,request):
+        return render(request,"register.html")
+    
+    def post(self,request):
+
+        first_name = request.POST["firstName"]
+        last_name = request.POST["lastName"]
+        email = request.POST["email"]
+        username = request.POST["userName"]
+        mobile = request.POST["mobile"]
+        password = request.POST["password"]
+        c_password = request.POST["confirmPassword"]
+
+        if password == c_password:
+            if User.objects.filter(username=username).exists():
+                messages.error(request,"user Exists")
+                return redirect("/register")
+            if User.objects.filter(email = email).exists():
+                messages.error(request,"email Exists")
+                return redirect("/register")
+            user = User.objects.create_user(
+                first_name = first_name,
+                last_name = last_name,
+                email=email,
+                password=password,
+                username=username
+            )
+            user.save()
+        else:
+            messages.error(request,"wrong password")
+        return redirect("/")

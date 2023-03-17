@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import View
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 # Create your views here.
 
@@ -11,10 +12,11 @@ class Base(View):
 class HomeView(Base):
     
     def get(self,request):
-        self.context = {}
+        self.context
         self.context['categories'] = Category.objects.all()
         self.context['sliders'] = Slider.objects.all()
         self.context['ads'] = Ad.objects.all()
+        self.context["brands"] = Brand.objects.all()
         self.context['hot'] = Product.objects.filter(labels = 'hot')
         self.context['new'] = Product.objects.filter(labels = 'new')
         return render(request,"index.html",self.context)
@@ -28,9 +30,6 @@ def checkout(request):
 def contact(request):
     return render(request,"contact.html")
 
-def login(request):
-    return render(request,"login.html")
-
 def myAccount(request):
     return render(request,"my-account.html")
 
@@ -41,7 +40,6 @@ class DetailView(Base):
     def get(self,request,slug):
        self.context
        self.context['products'] = Product.objects.filter(slug = slug)
-       print(self.context['products'])
        return render(request,"product-detail.html",self.context)
 
     def post(self,request,slug):
@@ -98,3 +96,23 @@ class RegisterView(Base):
         else:
             messages.error(request,"wrong password")
         return redirect("/")
+    
+
+class LoginView(Base):
+    def get(self,request):
+        return  render(request,"login.html")
+    
+    def post(self,request):
+        username = request.POST["userName"]
+        password = request.POST["password"]
+        user = authenticate(request,username = username,password = password)
+        if user is not None:
+           login(request,user)
+           return redirect("/")
+        else:
+            messages.error(request,"entered wrong password")
+            return redirect("/login")
+            
+def Logout(request):
+    logout(request)       
+    return redirect("/")

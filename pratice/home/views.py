@@ -1,9 +1,14 @@
 from django.shortcuts import render
 
+from home.models import *
+
 # Create your views here.
 
 def homePage(request):
-    return render(request,'index.html')
+    context = {}
+    context['users'] = User.objects.all()
+    context['ads'] = Ad.objects.all()
+    return render(request,'index.html',context)
 
 def xboxPage(request):
     return render(request,"game.html")

@@ -1,8 +1,9 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mini Portfolio</title>
+    <title>Mini Portfolio | Skills</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
@@ -26,15 +27,15 @@
             <span class="icon-bar"></span> <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/"
-            ><img src="{% static 'img/user.jpg' %}" alt=""
-          /></a>
+          <a class="brand" href="/"><img src="img/user.jpg" alt="" /></a>
           <ul class="nav nav-collapse pull-right">
             <li>
-              <a href="/" class="active"><i class="icon-user"></i> Profile</a>
+              <a href="/"><i class="icon-user"></i> Profile</a>
             </li>
             <li>
-              <a href="/skills"><i class="icon-trophy"></i> Skills</a>
+              <a href="/skills" class="active"
+                ><i class="icon-trophy"></i> Skills</a
+              >
             </li>
             <li>
               <a href="/work"><i class="icon-picture"></i> Work</a>
@@ -47,18 +48,21 @@
         </div>
       </div>
     </div>
-    <div class="container profile">
-      <div class="span3 rounded-circle">
-        <img src="{{profiles.image.url}}" alt="" class="rounded-circle" />
+    <div class="container skills">
+      <h2>My Skills</h2>
+      {% for skill in skills %}
+      <div class="row">
+        <div class="span3">
+          <div class="ps">
+            <img src="{{skill.image.url}}" class="rounded-circle" ></img>
+          </div>
+        </div>
+        <div class="span5">
+          <h3>{{skill.name}} <span>{{skill.percent}}</span></h3>
+          <progress id="file" value="{{skill.percent}}" max="100" style="width:100%;" > </progress>
+        </div>
       </div>
-      <div class="span5">
-        <h1>{{profiles.name}}</h1>
-        <h3>{{profiles.work}}</h3>
-        <p>{{profiles.description}}</p>
-        <a href="#" class="hire-me"
-          ><i class="icon-paper-plane"></i> Hire Me
-        </a>
-      </div>
+      {% endfor %}
     </div>
     <div class="row social">
       <ul class="social-icons">
@@ -82,12 +86,7 @@
         </li>
       </ul>
     </div>
-    <div
-      class="footer"
-      href="css/bootstrap-responsive.css"
-      rel="stylesheet"
-      type="text/css"
-    >
+    <div class="footer">
       <div class="container">
         <p class="pull-left">
           <a href="http://dzyngiri.com">www.dzyngiri.com</a>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mini Portfolio</title>
+    <title>Mini Portfolio | Work</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
@@ -12,6 +12,12 @@
       href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
       rel="stylesheet"
       type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/jquery.fancybox.css' %}"
+      media="screen"
     />
   </head>
   <body>
@@ -26,18 +32,18 @@
             <span class="icon-bar"></span> <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/"
-            ><img src="{% static 'img/user.jpg' %}" alt=""
-          /></a>
+          <a class="brand" href="/"><img src="img/user.jpg" alt="" /></a>
           <ul class="nav nav-collapse pull-right">
             <li>
-              <a href="/" class="active"><i class="icon-user"></i> Profile</a>
+              <a href="/"><i class="icon-user"></i> Profile</a>
             </li>
             <li>
               <a href="/skills"><i class="icon-trophy"></i> Skills</a>
             </li>
             <li>
-              <a href="/work"><i class="icon-picture"></i> Work</a>
+              <a href="/work" class="active"
+                ><i class="icon-picture"></i> Work</a
+              >
             </li>
             <li>
               <a href="/resume"><i class="icon-doc-text"></i> Resume</a>
@@ -47,18 +53,58 @@
         </div>
       </div>
     </div>
-    <div class="container profile">
-      <div class="span3 rounded-circle">
-        <img src="{{profiles.image.url}}" alt="" class="rounded-circle" />
-      </div>
-      <div class="span5">
-        <h1>{{profiles.name}}</h1>
-        <h3>{{profiles.work}}</h3>
-        <p>{{profiles.description}}</p>
-        <a href="#" class="hire-me"
-          ><i class="icon-paper-plane"></i> Hire Me
-        </a>
-      </div>
+    <div class="container work">
+      <h2>My Work</h2>
+      <ul class="work-images">
+        <li>
+          <div>
+            <a
+              class="fancybox-thumb"
+              rel="fancybox-thumb"
+              href="img/1.jpg"
+              title="Image 01"
+              ><img src="{% static 'img/1-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a class="fancybox-thumb" rel="fancybox-thumb" href="img/2.jpg"
+              ><img src="{% static 'img/2-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a class="fancybox-thumb" rel="fancybox-thumb" href="img/3.jpg"
+              ><img src="{% static 'img/3-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+      </ul>
+      <ul class="work-images">
+        <li>
+          <div>
+            <a class="fancybox-thumb" rel="fancybox-thumb" href="img/4.jpg"
+              ><img src="{% static 'img/4-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a class="fancybox-thumb" rel="fancybox-thumb" href="img/5.jpg"
+              ><img src="{% static 'img/5-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+        <li>
+          <div>
+            <a class="fancybox-thumb" rel="fancybox-thumb" href="img/6.jpg"
+              ><img src="{% static 'img/6-thumb.jpg' %}" alt=""
+            /></a>
+          </div>
+        </li>
+      </ul>
     </div>
     <div class="row social">
       <ul class="social-icons">
@@ -82,12 +128,7 @@
         </li>
       </ul>
     </div>
-    <div
-      class="footer"
-      href="css/bootstrap-responsive.css"
-      rel="stylesheet"
-      type="text/css"
-    >
+    <div class="footer">
       <div class="container">
         <p class="pull-left">
           <a href="http://dzyngiri.com">www.dzyngiri.com</a>
@@ -135,6 +176,23 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script>
       $("#myModal").modal("hidden");
+    </script>
+    <script src="{% static 'js/jquery.fancybox.js?v=2.1.5' %}"></script>
+    <script>
+      $(document).ready(function () {
+        $(".fancybox-thumb").fancybox({
+          helpers: {
+            title: {
+              type: "inside",
+            },
+            overlay: {
+              css: {
+                background: "rgba(1,1,1,0.65)",
+              },
+            },
+          },
+        });
+      });
     </script>
   </body>
 </html>

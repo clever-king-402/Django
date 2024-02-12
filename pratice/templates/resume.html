@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Mini Portfolio</title>
+    <title>Mini Portfolio | Resume</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <link href="{% static 'font/css/fontello.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
     <link
       href="http://fonts.googleapis.com/css?family=Droid+Sans:400,700"
       rel="stylesheet"
@@ -27,11 +27,11 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/"
-            ><img src="{% static 'img/user.jpg' %}" alt=""
+            ><img src="{% static 'img/user.jpg" alt=""
           /></a>
           <ul class="nav nav-collapse pull-right">
             <li>
-              <a href="/" class="active"><i class="icon-user"></i> Profile</a>
+              <a href="/"><i class="icon-user"></i> Profile</a>
             </li>
             <li>
               <a href="/skills"><i class="icon-trophy"></i> Skills</a>
@@ -40,24 +40,26 @@
               <a href="/work"><i class="icon-picture"></i> Work</a>
             </li>
             <li>
-              <a href="/resume"><i class="icon-doc-text"></i> Resume</a>
+              <a href="/resume" class="active"
+                ><i class="icon-doc-text"></i> Resume</a
+              >
             </li>
           </ul>
           <div class="nav-collapse collapse"></div>
         </div>
       </div>
     </div>
-    <div class="container profile">
-      <div class="span3 rounded-circle">
-        <img src="{{profiles.image.url}}" alt="" class="rounded-circle" />
-      </div>
-      <div class="span5">
-        <h1>{{profiles.name}}</h1>
-        <h3>{{profiles.work}}</h3>
-        <p>{{profiles.description}}</p>
+    <div class="container resume">
+      <h2>My Resume</h2>
+      <h3>
+        You can download my resume for your reference and I hope that we will
+        meet very soon! :)
+      </h3>
+      <div class="btn-center">
         <a href="#" class="hire-me"
-          ><i class="icon-paper-plane"></i> Hire Me
-        </a>
+          ><i class="icon-download"></i> Download Resume</a
+        >
+        <h2>125kb</h2>
       </div>
     </div>
     <div class="row social">
@@ -82,12 +84,7 @@
         </li>
       </ul>
     </div>
-    <div
-      class="footer"
-      href="css/bootstrap-responsive.css"
-      rel="stylesheet"
-      type="text/css"
-    >
+    <div class="footer">
       <div class="container">
         <p class="pull-left">
           <a href="http://dzyngiri.com">www.dzyngiri.com</a>

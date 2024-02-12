@@ -3,5 +3,6 @@ from django.contrib import admin
 from home.models import *
 
 # Register your models here.
-admin.site.register(User)
-admin.site.register(Ad)
+admin.site.register(Profile)
+admin.site.register(Skill)
+admin.site.register(Work)
